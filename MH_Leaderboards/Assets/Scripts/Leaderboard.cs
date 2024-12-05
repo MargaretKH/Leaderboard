@@ -40,10 +40,14 @@ public class Leaderboard : MonoBehaviour
     {
         for (int x = 0; x < leaderboardEntries.Length; x++)
         {
+            Debug.Log(leaderboard.Count);
             leaderboardEntries[x].SetActive(x < leaderboard.Count);
-            if (x >= leaderboard.Count) continue;
+            if (x >= leaderboard.Count) 
+                continue;
 
+            Debug.Log(leaderboardEntries[x].transform.Find("PlayerName"));
             leaderboardEntries[x].transform.Find("PlayerName").GetComponent<TextMeshProUGUI>().text = (leaderboard[x].Position + 1) + ". " + leaderboard[x].DisplayName;
+
             leaderboardEntries[x].transform.Find("ScoreText").GetComponent<TextMeshProUGUI>().text = (-(float)leaderboard[x].StatValue * 0.001f).ToString("F2");
         }
     }
